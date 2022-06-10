@@ -1,7 +1,9 @@
-import React, {ReactNode} from 'react';
-import {styled, SwipeableDrawerProps, useTheme} from "@mui/material";
-import MuiDrawer from "@mui/material/Drawer";
-import {Settings} from "../../../../context/settingContext";
+import React, { ReactNode } from 'react';
+import { styled, useTheme } from '@mui/material';
+import MuiSwipeableDrawer, {
+  SwipeableDrawerProps,
+} from '@mui/material/SwipeableDrawer';
+import { Settings } from '../../../../context/settingContext';
 
 interface Props {
   hidden: boolean
@@ -13,7 +15,7 @@ interface Props {
   saveSettings: (values: Settings) => void
 }
 
-const SwipeableDrawer = styled(MuiDrawer)<SwipeableDrawerProps>({
+const SwipeableDrawer = styled(MuiSwipeableDrawer)<SwipeableDrawerProps>({
   overflowX: 'hidden',
   transition: 'width .25s ease-in-out',
   '& ul': {
@@ -71,7 +73,7 @@ const Drawer = (props: Props) => {
     >
       {children}
     </SwipeableDrawer>
-  );
-};
+  )
+}
 
-export default Drawer;
+export default Drawer

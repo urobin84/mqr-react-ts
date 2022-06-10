@@ -1,27 +1,25 @@
-import React from 'react';
-import {PaletteMode} from "@mui/material";
-import {ContentWidth} from "../@core/layouts/types";
-
+import { PaletteMode } from '@mui/material';
+import { ContentWidth } from '../@core/layouts/types';
 
 type ThemeConfig = {
-  mode: PaletteMode
-  templateName: string
-  routingLoader: boolean
-  disableRipple: boolean
-  navigationSize: number
-  menuTextTruncate: boolean
-  contentWidth: ContentWidth
-  responsiveFontSizes: boolean
-}
+  mode: PaletteMode;
+  templateName: string;
+  routingLoader: boolean;
+  disableRipple: boolean;
+  navigationSize: number;
+  menuTextTruncate: boolean;
+  contentWidth: ContentWidth;
+  responsiveFontSizes: boolean;
+};
 
-const themeConfig: ThemeConfig =  {
+const themeConfig: ThemeConfig = {
   // ** Layout Configs
   templateName: 'Finance' /* App Name */,
   mode: 'light' /* light | dark */,
   contentWidth: 'boxed' /* full | boxed*/,
 
   // ** Routing Configs
-  routingLoader: true /* true | false */,
+  routingLoader: false /* true | false */,
 
   // ** Navigation (Menu) Configs
   menuTextTruncate: true /* true | false */,
@@ -29,7 +27,7 @@ const themeConfig: ThemeConfig =  {
 
   // ** Other Configs
   responsiveFontSizes: true /* true | false */,
-  disableRipple: false /* true | false */
+  disableRipple: true /* true | false */,
 };
 
 export default themeConfig;
