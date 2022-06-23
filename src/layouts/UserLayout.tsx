@@ -1,32 +1,32 @@
 // ** React Imports
-import { ReactNode } from 'react'
+import { ReactNode } from 'react';
 
 // ** MUI Imports
-import Box from '@mui/material/Box'
-import { Theme } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import Box from '@mui/material/Box';
+import { Theme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 // ** Layout Imports
 // !Do not remove this Layout import
-import RobinLayout from "../@core/layouts/RobinLayout";
+import RobinLayout from '../@core/layouts/RobinLayout';
 
 // ** Navigation Imports
-import RobinNavItems from 'src/navigation/robin'
+import RobinNavItems from 'src/navigation/robin';
 
 // ** Component Import
 // import UpgradeToProButton from './components/UpgradeToProButton'
-import RobinAppBarContent from './components/robin/AppBarContent'
+import RobinAppBarContent from './components/robin/AppBarContent';
 
 // ** Hook Import
-import {useSettings} from "../@core/hooks/useSettings";
+import { useSettings } from '../@core/hooks/useSettings';
 
 interface Props {
-  children: ReactNode
+  children: ReactNode;
 }
 
 const UserLayout = ({ children }: Props) => {
   // ** Hooks
-  const { settings, saveSettings } = useSettings()
+  const { settings, saveSettings } = useSettings();
 
   /**
    *  The below variable will hide the current layout menu at given screen size.
@@ -36,7 +36,7 @@ const UserLayout = ({ children }: Props) => {
    *  to know more about what values can be passed to this hook.
    *  ! Do not change this value unless you know what you are doing. It can break the template.
    */
-  const hidden = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'))
+  const hidden = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'));
 
   const UpgradeToProImg = () => {
     return (
@@ -49,8 +49,8 @@ const UserLayout = ({ children }: Props) => {
         {/*  <img width={230} alt='upgrade to premium' src={`/images/misc/upgrade-banner-${settings.mode}.png`} />*/}
         {/*</a>*/}
       </Box>
-    )
-  }
+    );
+  };
 
   return (
     <RobinLayout
@@ -73,7 +73,7 @@ const UserLayout = ({ children }: Props) => {
       {children}
       {/*<UpgradeToProButton />*/}
     </RobinLayout>
-  )
-}
+  );
+};
 
-export default UserLayout
+export default UserLayout;

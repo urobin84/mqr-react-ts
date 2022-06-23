@@ -1,42 +1,47 @@
 // ** React Imports
-import { ElementType, ReactNode } from 'react'
+import { ElementType, ReactNode } from 'react';
 
 // ** Next Imports
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 // ** MUI Imports
-import Chip from '@mui/material/Chip'
-import ListItem from '@mui/material/ListItem'
-import { styled } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
-import Box, { BoxProps } from '@mui/material/Box'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemButton, { ListItemButtonProps } from '@mui/material/ListItemButton'
+import Chip from '@mui/material/Chip';
+import ListItem from '@mui/material/ListItem';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import Box, { BoxProps } from '@mui/material/Box';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemButton, {
+  ListItemButtonProps,
+} from '@mui/material/ListItemButton';
 
 // ** Configs Import
-import themeConfig from "../../../../../config/themeConfig";
+import themeConfig from '../../../../../config/themeConfig';
 
 // ** Types
-import { NavLink } from '../../../types'
-import {Settings} from "../../../../context/settingContext";
+import { NavLink } from '../../../types';
+import { Settings } from '../../../../context/settingContext';
 
 // ** Custom Components Imports
-import UserIcon from "../../../../../layouts/components/UserIcon";
+import UserIcon from '../../../../../layouts/components/UserIcon';
 
 // ** Utils
-import {handleURLQueries} from "../../../utils";
+import { handleURLQueries } from '../../../utils';
 
 interface Props {
-  item: NavLink
-  settings: Settings
-  navVisible?: boolean
-  toggleNavVisibility: () => void
+  item: NavLink;
+  settings: Settings;
+  navVisible?: boolean;
+  toggleNavVisibility: () => void;
 }
 
 // ** Styled Components
 const MenuNavLink = styled(ListItemButton)<
-  ListItemButtonProps & { component?: ElementType; target?: '_blank' | undefined }
+  ListItemButtonProps & {
+    component?: ElementType;
+    target?: '_blank' | undefined;
+  }
 >(({ theme }) => ({
   width: '100%',
   borderTopRightRadius: 100,
@@ -46,12 +51,12 @@ const MenuNavLink = styled(ListItemButton)<
   transition: 'opacity .25s ease-in-out',
   '&.active, &.active:hover': {
     boxShadow: theme.shadows[3],
-    backgroundImage: `linear-gradient(98deg, ${theme.palette.customColors.primaryGradient}, ${theme.palette.primary.main} 94%)`
+    backgroundImage: `linear-gradient(98deg, ${theme.palette.customColors.primaryGradient}, ${theme.palette.primary.main} 94%)`,
   },
   '&.active .MuiTypography-root, &.active .MuiSvgIcon-root': {
-    color: `${theme.palette.common.white} !important`
-  }
-}))
+    color: `${theme.palette.common.white} !important`,
+  },
+}));
 
 const MenuItemTextMetaWrapper = styled(Box)<BoxProps>({
   width: '100%',
@@ -59,27 +64,27 @@ const MenuItemTextMetaWrapper = styled(Box)<BoxProps>({
   alignItems: 'center',
   justifyContent: 'space-between',
   transition: 'opacity .25s ease-in-out',
-  ...(themeConfig.menuTextTruncate && { overflow: 'hidden' })
-})
+  ...(themeConfig.menuTextTruncate && { overflow: 'hidden' }),
+});
 
 const RobinNavLink = ({ item, navVisible, toggleNavVisibility }: Props) => {
   // ** Hooks
-  const router = useRouter()
+  const router = useRouter();
 
-  const IconTag: ReactNode = item.icon
+  const IconTag: ReactNode = item.icon;
 
   const isNavLinkActive = () => {
     if (router.pathname === item.path || handleURLQueries(router, item.path)) {
-      return true
+      return true;
     } else {
-      return false
+      return false;
     }
-  }
+  };
 
   return (
     <ListItem
       disablePadding
-      className='nav-link'
+      className="nav-link"
       disabled={item.disabled || false}
       sx={{ mt: 1.5, px: '0 !important' }}
     >
@@ -88,32 +93,36 @@ const RobinNavLink = ({ item, navVisible, toggleNavVisibility }: Props) => {
           component={'a'}
           className={isNavLinkActive() ? 'active' : ''}
           {...(item.openInNewTab ? { target: '_blank' } : null)}
-          onClick={e => {
+          onClick={(e) => {
             if (item.path === undefined) {
-              e.preventDefault()
-              e.stopPropagation()
+              e.preventDefault();
+              e.stopPropagation();
             }
             if (navVisible) {
-              toggleNavVisibility()
+              toggleNavVisibility();
             }
           }}
           sx={{
             pl: 5.5,
-            ...(item.disabled ? { pointerEvents: 'none' } : { cursor: 'pointer' })
+            ...(item.disabled
+              ? { pointerEvents: 'none' }
+              : { cursor: 'pointer' }),
           }}
         >
           <ListItemIcon
             sx={{
               mr: 2.5,
               color: 'text.primary',
-              transition: 'margin .25s ease-in-out'
+              transition: 'margin .25s ease-in-out',
             }}
           >
             <UserIcon icon={IconTag} />
           </ListItemIcon>
 
           <MenuItemTextMetaWrapper>
-            <Typography {...(themeConfig.menuTextTruncate && { noWrap: true })}>{item.title}</Typography>
+            <Typography {...(themeConfig.menuTextTruncate && { noWrap: true })}>
+              {item.title}
+            </Typography>
             {item.badgeContent ? (
               <Chip
                 label={item.badgeContent}
@@ -122,7 +131,7 @@ const RobinNavLink = ({ item, navVisible, toggleNavVisibility }: Props) => {
                   height: 20,
                   fontWeight: 500,
                   marginLeft: 1.25,
-                  '& .MuiChip-label': { px: 1.5, textTransform: 'capitalize' }
+                  '& .MuiChip-label': { px: 1.5, textTransform: 'capitalize' },
                 }}
               />
             ) : null}
@@ -130,7 +139,7 @@ const RobinNavLink = ({ item, navVisible, toggleNavVisibility }: Props) => {
         </MenuNavLink>
       </Link>
     </ListItem>
-  )
-}
+  );
+};
 
-export default RobinNavLink
+export default RobinNavLink;
